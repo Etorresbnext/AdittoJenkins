@@ -8,5 +8,10 @@ pipeline{
         bat 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py'
       }
     }
+    stage('envtest'){
+      steps{
+        echo env.BUILD_ID
+      }
+    }
   }
 }
