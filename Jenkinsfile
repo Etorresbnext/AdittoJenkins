@@ -1,16 +1,22 @@
-pipeline {
+pipeline{
+
     agent {label 'DES-BNEXT-152-etorres'}
-    stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Etorresbnext/AdittoJenkins.git', credentialsId: 'GitAditto'
+
+    stages{
+        stage('Build'){
+            steps{
+                echo 'Hola Mundo'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Hola Mundo'
+        stage('Test'){
+            steps{
+                echo 'Mi nombre es Tilín'
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo 'Adios Mundo'
             }
         }
     }
 }
-
