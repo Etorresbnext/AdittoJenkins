@@ -7,7 +7,7 @@ pipeline{
       steps{
         script{
           bat '''
-            cd C:\\Users\\etorres\\PycharmProjects\\IpAddresses'
+            cd C:\\Users\\etorres\\PycharmProjects\\IpAddresses
             python main.py
           '''
         }
