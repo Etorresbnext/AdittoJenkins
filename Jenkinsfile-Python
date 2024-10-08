@@ -1,0 +1,12 @@
+pipeline{
+
+  agent {label 'DES-BNEXT-152-etorres'}
+
+  stages{
+    stage('py-exe'){
+      steps{
+        bat 'python C:\Users\etorres\PycharmProjects\IpAddresses\main.py'
+      }
+    }
+  }
+}
