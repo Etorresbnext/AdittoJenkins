@@ -5,7 +5,7 @@ pipeline{
   stages{
     stage('py-exe'){
       steps{
-        bat 'python C:\Users\etorres\PycharmProjects\IpAddresses\main.py'
+        bat 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py'
       }
     }
   }
