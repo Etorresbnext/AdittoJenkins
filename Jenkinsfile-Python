@@ -6,10 +6,7 @@ pipeline{
     stage('py-exe'){
       steps{
         script{
-          def ipAddresses = bat (script: '''
-            cd C:\\Users\\etorres\\PycharmProjects\\IpAddresses
-            python main.py
-          ''', returnStdout: true).trim()
+          def ipAddresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
           echo "${ipAddresses}"
         }
       }
