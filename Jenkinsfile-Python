@@ -9,6 +9,7 @@ pipeline{
             def getIpAddresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
             def ips = getIpAddresses.split(',')
             env.IPS_TO_PING = ips.join(',')
+            echo env.IPS_TO_PING
           }
       }
     }
