@@ -6,8 +6,9 @@ pipeline{
     stage('py-exe'){
       steps{
           script{
-            def successPing = bat(script: 'ping 172.20.1.26', returnStdout: true).trim()
-            echo successPing
+            def getIpAddresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
+            def ips = getIpAddresses.split(',')
+            env.IPS_TO_PING = ips.join(',')
           }
       }
     }
