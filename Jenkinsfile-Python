@@ -8,7 +8,12 @@ pipeline{
           script{
             def getIpAddresses = bat(script: 'python -u C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
             echo "Las Ips ya corregidas son: ${getIpAddresses}"
-          }
+            def ipList = getIpAddresses.split("\n")
+            for (ip in ipList) {
+              echo "Haciendo ping a: ${ip}"
+              bat "ping -n 1 ${ip}"
+            }
+        }
       }
     }
   }
