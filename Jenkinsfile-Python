@@ -7,8 +7,8 @@ pipeline{
       steps{
           script{
             def successPing = bat(script: 'ping 172.20.1.26', returnStdout: true).trim()
+            echo successPing
           }
-          echo succesPing
       }
     }
   }
