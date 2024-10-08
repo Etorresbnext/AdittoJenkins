@@ -7,7 +7,7 @@ pipeline{
       steps{
         script{
           def getIpAdresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true)
-          echo getIpAdresses
+          echo "El resultado es: ${getIpAdresses}"
         }
       }
     }
