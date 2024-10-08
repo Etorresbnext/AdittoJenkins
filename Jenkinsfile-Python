@@ -5,13 +5,10 @@ pipeline{
   stages{
     stage('py-exe'){
       steps{
-        def getIpAdresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py')
-        echo "El resultado es ${getIpAdresses}"
-      }
-    }
-    stage('envtest'){
-      steps{
-        echo env.BUILD_ID
+        script{
+          def getIpAdresses = bat(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py')
+          echo "El resultado es ${getIpAdresses}"
+        }
       }
     }
   }
