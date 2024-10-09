@@ -5,7 +5,7 @@ pipeline{
     environment{
         ipAddressesList = ''
         pingResult = ''
-        pingResultsList = ''
+        pingResultsList = []
     }
 
     stages{
@@ -29,7 +29,7 @@ pipeline{
                         else{
                             pingResult = false
                         }
-                        pingResultsList = pingResult.split("\n")
+                        pingResultsList.add(pingResult)
                     }
                     echo "${pingResultsList}"
                 }
