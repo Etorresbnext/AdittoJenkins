@@ -3,7 +3,7 @@ pipeline{
     agent {label 'DES-BNEXT-152-etorres'}
 
     environment{
-        ipAddressesList = []
+        ipAddressesList = ''
     }
 
     stages{
