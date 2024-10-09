@@ -2,20 +2,26 @@ pipeline{
 
     agent {label 'DES-BNEXT-152-etorres'}
 
+    environment{
+        ipAddressesList = []
+    }
+
     stages{
-        stage('Build'){
+        stage('Get'){
             steps{
-                echo 'Hola Mundo'
+                script{
+                    def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
+                    def ipAddressesList = getIpAddresses.split("\n")
+                }
             }
         }
-        stage('Test'){
+        stage('Ping'){
             steps{
-                echo 'Mi nombre es Tilín'
-            }
-        }
-        stage('Deploy'){
-            steps{
-                echo 'Adios Mundo'
+                script{
+                    for (ip in ipAddressesList){
+                        powershell "ping -n 1 ${ip}"
+                    }
+                }
             }
         }
     }
