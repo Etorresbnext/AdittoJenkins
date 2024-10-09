@@ -19,10 +19,7 @@ pipeline{
         stage('Ping'){
             steps{
                 script{
-                    for (ip in ipAddressesList){
-                        echo "Haciendo ping a: ${ip}"
-                        powershell "ping -n 1 ${ip}"
-                    }
+                    echo "Lista de IPs: ${ipAddressesList}"
                 }
             }
         }
