@@ -13,6 +13,7 @@ pipeline{
             steps{
                 script{
                     def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
+                    echo "${getIpAddresses}"
                     ipAddressesList = getIpAddresses.split("\n")
                 }
             }
@@ -33,7 +34,6 @@ pipeline{
                         pingResultsListScript.add(pingResult)
                         pingResultsList = pingResultsListScript
                     }
-                    echo "${pingResultsList}"
                 }
             }
         }
