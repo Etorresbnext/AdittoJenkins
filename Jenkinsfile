@@ -12,14 +12,15 @@ pipeline{
                 script{
                     def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
                     ipAddressesList = getIpAddresses.split("\n")
-                    echo "Lista de IPs: ${ipAddressesList}"
                 }
             }
         }
         stage('Ping'){
             steps{
                 script{
-                    echo "Lista de IPs: ${ipAddressesList}"
+                    for(ip in ipAddressesList){
+                        powershell "ping -n 1 ${ip}"
+                    }
                 }
             }
         }
