@@ -19,7 +19,15 @@ pipeline{
             steps{
                 script{
                     for(ip in ipAddressesList){
-                        def pingResult = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
+                        def pingOutput = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
+                        def pingResult = ''
+
+                        if(pingOutput.contains("TTL=")){
+                            pingResult = true
+                        }
+                        else{
+                            pingResult = false
+                        }
                         echo "${pingResult}"
                     }
                 }
