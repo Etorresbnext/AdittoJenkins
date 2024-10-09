@@ -11,7 +11,7 @@ pipeline{
             steps{
                 script{
                     def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
-                    def ipAddressesList = getIpAddresses.split("\n")
+                    ipAddressesList = getIpAddresses.split("\n")
                     echo "Lista de IPs: ${ipAddressesList}"
                 }
             }
