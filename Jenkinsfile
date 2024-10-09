@@ -4,6 +4,7 @@ pipeline{
 
     environment{
         ipAddressesList = ''
+        pingResultsList = ''
     }
 
     stages{
@@ -28,8 +29,16 @@ pipeline{
                         else{
                             pingResult = false
                         }
-                        echo "${pingResult}"
+                        pingResultsList = pingResult.split("\n")
                     }
+                    echo "${pingResultsList}"
+                }
+            }
+        }
+        stage('Post'){
+            steps{
+                script{
+                    echo 'Hola Mundo'
                 }
             }
         }
