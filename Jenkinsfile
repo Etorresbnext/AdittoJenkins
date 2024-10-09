@@ -4,7 +4,7 @@ pipeline{
 
     environment{
         ipAddressesList = ''
-        connected = ''
+        runnersConnectionList = ''
     }
 
     stages{
@@ -31,15 +31,21 @@ pipeline{
                         }
                         pingResultsList.add(isRunnerConnected)
                     }
-                    connected = pingResultsList
-                    echo "${connected}"
+                    runnersConnectionList = pingResultsList
                 }
             }
         }
         stage('Post'){
             steps{
                 script{
-                    echo 'Hola Mundo'
+                    for(int i = 0; i < ipAddressesList.size(); i++){
+                        def ip = ipAddressesList[i]
+                        echo "${ip}"
+                        def connected = runnersConnectionList[i]
+                        echo "${connected}"
+
+                        powershell "python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\update_runners_connection.py ${connected} ${ip}"
+                    }
                 }
             }
         }
