@@ -4,8 +4,7 @@ pipeline{
 
     environment{
         ipAddressesList = ''
-        pingResult = ''
-        pingResultsList = ''
+        connected = ''
     }
 
     stages{
@@ -13,28 +12,27 @@ pipeline{
             steps{
                 script{
                     def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
-                    echo "${getIpAddresses}"
                     ipAddressesList = getIpAddresses.split()
-                    echo "${ipAddressesList}"
                 }
             }
         }
         stage('Ping'){
             steps{
                 script{
-                    def pingResultsListScript = []
+                    def pingResultsList = []
                     for(ip in ipAddressesList){
-                        def pingOutput = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
+                        def getPingResult = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
 
-                        if(pingOutput.contains("TTL=")){
-                            pingResult = true
+                        if(getPingResult.contains("TTL=")){
+                            isRunnerConnected = true
                         }
                         else{
-                            pingResult = false
+                            isRunnerConnected = false
                         }
-                        pingResultsListScript.add(pingResult)
-                        pingResultsList = pingResultsListScript
+                        pingResultsList.add(isRunnerConnected)
                     }
+                    connected = pingResultsList
+                    echo "${connected}"
                 }
             }
         }
