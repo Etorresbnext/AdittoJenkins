@@ -19,7 +19,8 @@ pipeline{
             steps{
                 script{
                     for(ip in ipAddressesList){
-                        powershell "ping -n 1 ${ip}"
+                        def pingResult = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
+                        echo "${pingResult}"
                     }
                 }
             }
