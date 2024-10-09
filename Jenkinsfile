@@ -5,7 +5,7 @@ pipeline{
     environment{
         ipAddressesList = ''
         pingResult = ''
-        pingResultsList = []
+        pingResultsList = ''
     }
 
     stages{
@@ -20,6 +20,7 @@ pipeline{
         stage('Ping'){
             steps{
                 script{
+                    def pingResultsListScript = []
                     for(ip in ipAddressesList){
                         def pingOutput = powershell(script: "ping -n 1 ${ip}", returnStdout: true).trim()
 
@@ -29,7 +30,8 @@ pipeline{
                         else{
                             pingResult = false
                         }
-                        pingResultsList.add(pingResult)
+                        pingResultsListScript.add(pingResult)
+                        pingResultsList = pingResultsListScript
                     }
                     echo "${pingResultsList}"
                 }
