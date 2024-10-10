@@ -38,7 +38,7 @@ pipeline{
         stage('Post'){
             steps{
                 script{
-                    def updated_date = new Date()
+                    def updated_date = new Date().format("yyyy-MM-dd HH:mm:ss")
                     for(int i = 0; i < ipAddressesList.size(); i++){
                         def ip = ipAddressesList[i]
                         def connected = runnersConnectionList[i]
