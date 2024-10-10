@@ -43,6 +43,7 @@ pipeline{
                         def ip = ipAddressesList[i]
                         def connected = runnersConnectionList[i]
                         powershell "python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\update_runners_connection.py ${connected} ${updated_date} ${ip}"
+                        echo "${updated_date}"
                     }
                 }
             }
