@@ -1,6 +1,6 @@
 pipeline{
 
-    agent {label 'DES-BNEXT-152-etorres'}
+    agent {label 'principal'}
 
     environment{
         ipAddressesList = ''
