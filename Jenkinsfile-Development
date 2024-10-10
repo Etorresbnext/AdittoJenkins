@@ -39,7 +39,7 @@ pipeline{
             steps{
                 script{
                     for(int i = 0; i < ipAddressesList.size(); i++){
-                        def updated_date = new Date().format("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+                        def updated_date = new Date().format("yyyy-MM-dd HH:mm:ss.SSSXXX")
                         def ip = ipAddressesList[i]
                         def connected = runnersConnectionList[i]
                         powershell "python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\update_runners_connection.py ${connected} ${updated_date} ${ip}"
