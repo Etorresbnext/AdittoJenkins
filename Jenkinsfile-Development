@@ -38,10 +38,12 @@ pipeline{
         stage('Post'){
             steps{
                 script{
+                    def updated_date = new Date()
                     for(int i = 0; i < ipAddressesList.size(); i++){
                         def ip = ipAddressesList[i]
                         def connected = runnersConnectionList[i]
                         powershell "python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\update_runners_connection.py ${connected} ${ip}"
+                        echo "${updated_date}"
                     }
                 }
             }
