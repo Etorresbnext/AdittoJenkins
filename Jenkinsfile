@@ -11,7 +11,7 @@ pipeline{
         stage('Get'){
             steps{
                 script{
-                    def getIpAddresses = powershell(script: 'python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\main.py', returnStdout: true).trim()
+                    def getIpAddresses = powershell(script: 'python C:\\Users\\QA-Reportes\\Desktop\\IpAddresses\\main.py', returnStdout: true).trim()
                     ipAddressesList = getIpAddresses.split()
                 }
             }
@@ -44,7 +44,7 @@ pipeline{
                         def connected = runnersConnectionList[i]
                         echo "${connected}"
 
-                        powershell "python C:\\Users\\etorres\\PycharmProjects\\IpAddresses\\update_runners_connection.py ${connected} ${ip}"
+                        powershell "python C:\\Users\\QA-Reportes\\Desktop\\IpAddresses\\update_runners_connection.py ${connected} ${ip}"
                     }
                 }
             }
